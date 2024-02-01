@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "KG Broken Vessels Sketch";
+    src: url(KGBrokenVesselsSketch.ttf) format("opentype");
+ }
+ 
+ @font-face {
+    font-family: "KG Broken Vessels Sketch";
+    src: url(KGBrokenVesselsSketch.ttf) format("opentype");
+    font-weight: bold;
+ }
+
+ * {
+    font-family: "KG Broken Vessels Sketch", Verdana, Tahoma;
+}
+
+body {
+    font-family: "KG Broken Vessels Sketch", Verdana, Tahoma;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: auto;
+    background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg");
+    color: white;
+    font-family: cursive;
+    font-size: 0.7em;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    scale: 2;
+    margin-top: -100px;
+}
+
+
+h1 {
+    margin-bottom: 10px;
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+}
+
+td:hover {
+    background-color: #f2f2f27c;
+}
+
+.winner {
+    background-color: #8cff66;
+}
+
+#scores {
+    text-align: center;
+    color: white;
+}
+
+#turnLabel {
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    color: white;
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+

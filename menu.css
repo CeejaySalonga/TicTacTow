@@ -1,0 +1,73 @@
+@font-face {
+    font-family: "KG Broken Vessels Sketch";
+    src: url(KGBrokenVesselsSketch.ttf) format("opentype");
+ }
+ 
+ @font-face {
+    font-family: "KG Broken Vessels Sketch";
+    src: url(KGBrokenVesselsSketch.ttf) format("opentype");
+    font-weight: bold;
+ }
+ 
+body {
+    font-family: "KG Broken Vessels Sketch", Verdana, Tahoma;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg");
+    color: white;
+    font-family: cursive;
+    font-size: 0.7em;
+    justify-content: center;
+    margin-top: -200px;
+    scale: 2;
+    overflow: hidden;
+}
+
+* {
+    font-family: "KG Broken Vessels Sketch", Verdana, Tahoma;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: white;
+    font-family: "KG Broken Vessels Sketch", Verdana, Tahoma;
+}
+h2 {
+    color: black;
+}
+
+#game-container {
+    display: none;
+    margin-top: 20px;
+}
+
+#popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    display: none;
+}
+
+#popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

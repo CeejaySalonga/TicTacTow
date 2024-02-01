@@ -1,0 +1,1 @@
+let chosenDifficulty = 0;
