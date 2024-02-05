@@ -1,136 +1,128 @@
+/* Font Definitions */
 @font-face {
-    font-family: "Chainwhacks";
-    src: url(Chainwhacks-vm72E.ttf) format("opentype");
- }
- 
- @font-face {
-    font-family: "Dragon Hunter";
-    src: url(Chainwhacks-vm72E.ttf) format("opentype");
-    font-weight: bold;
- }
- 
-body {
-    font-family: "Chainwhacks", Verdana, Tahoma;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg");
-    color: white;
-    font-family: cursive;
-    font-size: 0.7em;
-    justify-content: center;
-    margin-top: -200px;
-    scale: 2;
-    overflow: hidden;
+  font-family: "Chainwhacks";
+  src: url(Chainwhacks-vm72E.ttf) format("opentype");
 }
 
+@font-face {
+  font-family: "Dragon Hunter";
+  src: url(Chainwhacks-vm72E.ttf) format("opentype");
+  font-weight: bold;
+}
+
+/* Reset Styles */
 * {
-    font-family: "Chainwhacks", Verdana, Tahoma;
-}
-
-h1 {
-    margin-bottom: 10px;
-    color: white;
-    font-family: "Chainwhacks", Verdana, Tahoma;
-    letter-spacing: 3px;
-}
-h2 {
-    color: black;
-}
-
-h4 {
-    letter-spacing: 2px;
-    font-size: 1.3em;
-}
-#game-container {
-    display: none;
-    margin-top: 20px;
-}
-
-#popup-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    display: none;
-}
-
-#popup {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-*
-{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body
-{
-  min-height: 100vh;
+
+/* Body Styles */
+body {
+  font-family: "Chainwhacks", Verdana, Tahoma, cursive;
+  font-size: 0.7em;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
   background: #00001b;
+  overflow: hidden;
 }
-.container
-{
+
+/* Heading Styles */
+h1, h2 {
+  font-family: "Chainwhacks", Verdana, Tahoma;
+}
+
+h1 {
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+h2 {
+  color: black;
+}
+
+h4 {
+  font-size: 1.3em;
+  letter-spacing: 2px;
+}
+
+/* Game Container Styles */
+#game-container {
+  display: none;
+  margin-top: 20px;
+}
+
+/* Popup Container Styles */
+#popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  display: none;
+}
+
+#popup {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Button Styles */
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Animation Styles */
+.container {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
 }
-.bubbles
-{
+
+.bubbles {
   position: relative;
   display: flex;
-  z-index: -1000;
 }
-.bubbles span
-{
+
+.bubbles span {
   position: relative;
-  width: 15px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   background: #4fc3dc;
-  margin: 0 2px;
+  margin: 0 4px;
   border-radius: 50%;
-  box-shadow: 0 0 0 7px #4fc3dc44,
-  0 0 50px #4fc3dc,
-  0 0 100px #4fc3dc;
+  box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc;
   animation: animate 10s linear infinite;
   animation-duration: calc(125s / var(--i));
 }
 
-.bubbles span:nth-child(even)
-{
+.bubbles span:nth-child(even) {
   background: #ff2d75;
-  box-shadow: 0 0 0 7px #ff2d7544,
-  0 0 50px #ff2d75,
-  0 0 100px #ff2d75;
+  box-shadow: 0 0 0 10px #ff2d7544, 0 0 50px #ff2d75, 0 0 100px #ff2d75;
 }
-@keyframes animate
-{
-  0%
-  {
-     transform: translateY(100vh) scale(0);
+
+@keyframes animate {
+  0% {
+      transform: translateY(100vh) scale(0);
   }
-  100%
-  {
-     transform: translateY(-10vh) scale(1);
+  100% {
+      transform: translateY(-10vh) scale(1);
   }
 }
