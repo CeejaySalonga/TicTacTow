@@ -33,7 +33,6 @@ body {
     right: 0;
     overflow: hidden;
     scale: 2;
-    margin-top: -100px;
 }
 
 .winning-cell {
