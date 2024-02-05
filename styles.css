@@ -11,7 +11,10 @@
 
  * {
     font-family: "Chainwhacks", Verdana, Tahoma;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
 body {
     font-family: "Chainwhacks", Verdana, Tahoma;
@@ -20,17 +23,23 @@ body {
     align-items: center;
     height: 100vh;
     margin: auto;
-    background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg");
     color: white;
-    font-family: cursive;
     font-size: 0.7em;
     justify-content: center;
+    min-height: 100vh;
+    background: #00001b;
     position: fixed;
     left: 0;
     right: 0;
     overflow: hidden;
     scale: 2;
     margin-top: -100px;
+}
+
+.winning-cell {
+  background-color: #64d5ee;
+  font-weight: bold;
+  color: black;
 }
 
 
@@ -58,10 +67,6 @@ td:hover {
     background-color: #f2f2f27c;
 }
 
-.winner {
-    background-color: #8cff66;
-}
-
 #scores {
     text-align: center;
     color: white;
@@ -81,17 +86,6 @@ button {
     cursor: pointer;
 }
 
-*
-{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body
-{
-  min-height: 100vh;
-  background: #00001b;
-}
 .container
 {
   position: relative;
