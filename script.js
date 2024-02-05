@@ -26,7 +26,7 @@ const winningCombos = [
     [[0, 1],[1, 0]],
     [[0, 2],[1, 1],[2, 0]],
     [[0, 3],[1, 2],[2, 1],[3, 0]],
-    [[0, 4],[1, 3],[2, 2],[4, 0]],
+    [[0, 4],[1, 3],[2, 2],[3, 1],[4, 0]],
     [[0, 5],[1, 4],[2, 3],[4, 1]],
     [[1, 5],[2, 4],[3, 3],[4, 2]],
     [[2, 5],[3, 4],[4, 3],],
@@ -136,7 +136,7 @@ function evaluate() {
     return 0;
 }
 
-function minimax(board, depth, isMaximizing) {
+function minimax(board, depth, alpha, beta, isMaximizing) {
     const scores = {
         X: -1,
         O: 1,
@@ -149,7 +149,7 @@ function minimax(board, depth, isMaximizing) {
         return score;
     }
 
-    if (depth >= 3) {
+    if (depth >= 2) { // Adjusted the depth to 2
         return 0;
     }
 
@@ -159,8 +159,13 @@ function minimax(board, depth, isMaximizing) {
             for (let j = 0; j < cols; j++) {
                 if (board[i][j] === '') {
                     board[i][j] = 'O';
-                    bestScore = Math.max(bestScore, minimax(board, depth + 1, false));
+                    bestScore = Math.max(bestScore, minimax(board, depth + 1, alpha, beta, false));
                     board[i][j] = '';
+                    
+                    alpha = Math.max(alpha, bestScore);
+                    if (beta <= alpha) {
+                        break; // Beta cut-off
+                    }
                 }
             }
         }
@@ -171,14 +176,20 @@ function minimax(board, depth, isMaximizing) {
             for (let j = 0; j < cols; j++) {
                 if (board[i][j] === '') {
                     board[i][j] = 'X';
-                    bestScore = Math.min(bestScore, minimax(board, depth + 1, true));
+                    bestScore = Math.min(bestScore, minimax(board, depth + 1, alpha, beta, true));
                     board[i][j] = '';
+
+                    beta = Math.min(beta, bestScore);
+                    if (beta <= alpha) {
+                        break; // Alpha cut-off
+                    }
                 }
             }
         }
         return bestScore;
     }
 }
+
 
 function findBestMove() {
     let bestScore = -Infinity;
@@ -204,24 +215,35 @@ function findBestMove() {
 
 function playAgainstAI() {
     if (currentPlayer === 'O') {
-        setTimeout(() => {
-            if (aiLevel === 'expert') {
+        // Set isAITurn to true before AI's turn
+        isAITurn = true;
+
+        if (aiLevel === 'expert') {
+            setTimeout(() => {
                 const bestMove = findBestMove();
                 cellClick(bestMove.row, bestMove.col);
-            } else if (aiLevel === 'difficult') {
+            }, 1); // A small delay, e.g., 10 milliseconds
+        } else if (aiLevel === 'difficult') {
+            setTimeout(() => {
                 if (Math.random() < 0.5) {
                     const bestMove = findBestMove();
                     cellClick(bestMove.row, bestMove.col);
                 } else {
                     makeRandomMove();
                 }
-            } else {
+            }, 1); // A small delay, e.g., 10 milliseconds
+        } else {
+            setTimeout(() => {
                 makeRandomMove();
-            }
-            isAITurn = false; // Set isAITurn back to false after AI move
-        }, 0);
+            }, 10); // A small delay, e.g., 10 milliseconds
+        }
+
+        // Set isAITurn back to false after AI move
+        isAITurn = false;
     }
 }
+
+
 
 
 function checkDraw() {
@@ -257,6 +279,11 @@ function makeRandomMove() {
 
 
 function cellClick(row, col) {
+    // Check if it's the AI's turn, and return early if true
+    if (isAITurn) {
+        return;
+    }
+
     if (board[row][col] === '' && !checkWinner()) {
         board[row][col] = currentPlayer;
         render();
@@ -272,31 +299,33 @@ function cellClick(row, col) {
                     scores = { 'X': 0, 'O': 0 };
                     updateScores();
                     resetGame();
-                }, 0);
+                }, 50); // Add a delay of 500 milliseconds (0.5 seconds) before showing the alert
             } else {
                 setTimeout(() => {
                     alert(`Player ${currentPlayer} wins this round!`);
                     resetGame();
-                }, 0);
+                }, 50);
             }
         } else if (checkDraw()) {
             setTimeout(() => {
                 alert("It's a draw!");
                 resetGame();
-            }, 0);
+            }, 50);
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             updateTurnLabel();
 
             if (aiLevel !== '' && currentPlayer === 'O') {
+                // Set isAITurn to true before AI's turn
+                isAITurn = true;
+
                 setTimeout(() => {
                     playAgainstAI();
-                }, 0);
+                }, 500);
             }
         }
     }
 }
-
 
 
 function getWinningCombo() {
