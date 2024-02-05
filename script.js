@@ -285,6 +285,29 @@ cellClick(row, col);
 }
 }
 
+// Replace alert with custom pop-up function
+function showPopup(message, callback) {
+    const popupContainer = document.getElementById('popupContainer');
+    popupContainer.innerHTML = `
+        <div class="popup">
+            <div class="popup-content">
+                <p>${message}</p>
+                <button onclick="closePopup(${callback})">NEXT</button>
+            </div>
+        </div>
+    `;
+}
+
+function closePopup(callback) {
+    const popupContainer = document.getElementById('popupContainer');
+    popupContainer.innerHTML = ''; // Clear the pop-up container
+
+    // Execute callback function if provided
+    if (callback && typeof callback === 'function') {
+        callback();
+    }
+}
+
 function cellClick(row, col) {
     // Check if it's the AI's turn, and return early if true
     if (isAITurn) {
@@ -304,29 +327,30 @@ function cellClick(row, col) {
 
             if (scores[currentPlayer] === winningScore) {
                 setTimeout(() => {
-                    alert(`Player ${currentPlayer} wins the game!`);
-                    scores = { 'X': 0, 'O': 0 };
-                    updateScores();
-                    resetGame();
-                }, 50); // Adjust the delay as needed
+                    showPopup(`Player ${currentPlayer} wins the game!`, function () {
+                        scores = { 'X': 0, 'O': 0 };
+                        updateScores();
+                        resetGame();
+                    });
+                }, 150); // Adjust the delay as needed
             } else {
                 setTimeout(() => {
-                    alert(`Player ${currentPlayer} wins this round!`);
-                    resetGame();
-                }, 50);
+                    showPopup(`Player ${currentPlayer} wins this round!`, resetGame);
+                }, 150);
             }
 
-            // Highlight the winning cells after the alert
+            // Highlight the winning cells after the pop-up
             highlightWinningCells(winningCombo);
 
-            // Set isAITurn back to false after the alert
+            // Set isAITurn back to false after the pop-up
             isAITurn = false;
         } else if (checkDraw()) {
             setTimeout(() => {
-                alert("It's a draw!");
-                updateScores();
-                resetGame();
-            }, 50);
+                showPopup("It's a draw!", function () {
+                    updateScores();
+                    resetGame();
+                });
+            }, 150);
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             updateTurnLabel();
@@ -342,6 +366,7 @@ function cellClick(row, col) {
         }
     }
 }
+
 
 
 function highlightWinningCells(winningCombo) {
