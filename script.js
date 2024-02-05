@@ -321,7 +321,7 @@ function cellClick(row, col) {
 
                 setTimeout(() => {
                     playAgainstAI();
-                }, 500);
+                }, 50);
             }
         }
     }
