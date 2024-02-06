@@ -106,30 +106,31 @@ box-shadow: 0 0 5px #ff2d75,
 }
 .bubbles
 {
-  position: relative;
-  display: flex;
+position: relative;
+display: flex;
+z-index: -1000;
 }
 .bubbles span
 {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  background: #4fc3dc;
-  margin: 0 4px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 10px #4fc3dc44,
-  0 0 50px #4fc3dc,
-  0 0 100px #4fc3dc;
-  animation: animate 10s linear infinite;
-  animation-duration: calc(125s / var(--i));
+position: relative;
+width: 15px;
+height: 20px;
+background: #4fc3dc;
+margin: 0 2px;
+border-radius: 50%;
+box-shadow: 0 0 0 7px #4fc3dc44,
+0 0 50px #4fc3dc,
+0 0 100px #4fc3dc;
+animation: animate 10s linear infinite;
+animation-duration: calc(125s / var(--i));
 }
 
 .bubbles span:nth-child(even)
 {
-  background: #ff2d75;
-  box-shadow: 0 0 0 10px #ff2d7544,
-  0 0 50px #ff2d75,
-  0 0 100px #ff2d75;
+background: #ff2d75;
+box-shadow: 0 0 0 7px #ff2d7544,
+0 0 50px #ff2d75,
+0 0 100px #ff2d75;
 }
 @keyframes animate
 {
